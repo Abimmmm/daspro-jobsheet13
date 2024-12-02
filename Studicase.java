@@ -25,8 +25,9 @@ public class Studicase {
             } else if (pilih == 2) {
                 tampilDataPrestasi();
             } else if (pilih == 3) {
-                analisisJenis();
+                analisisPrestasi();
             } else if (pilih == 4) {
+                System.out.println("--------- Program Telah Selesai!! ---------");
                 break;
             } else {
                 System.out.println("Menu Tidak Valid!!");
@@ -40,7 +41,7 @@ public class Studicase {
         String nama = sc.next();
         System.out.print("Masukkan NIM Mahasiswa: ");
         String nim = sc.next();
-        System.out.print("Masukkan Jenis Prestasi: ");
+        System.out.print("Masukkan Jenis Prestasi (juara): ");
         String jenis = sc.next();
         String tingkat;
         while (true) {
@@ -83,33 +84,53 @@ public class Studicase {
             System.out.println("Data Belum Diisi!!");
         } else if (jmlData > 0) {
             System.out.println("=== Daftar Prestasi Mahasiswa ===");
-            System.out.println("Nama | " + "NIM | " + "Jenis | " + "Tingkat | " + "Tahun | ");
+            System.out.println("Nama | " + "NIM | " + "Jenis (juara) | " + "Tingkat | " + "Tahun | ");
             for (int i = 0; i < jmlData; i++) {
                 System.out.println(dataMhs[i][0] + " | " + dataMhs[i][1] + " | " + dataMhs[i][2] + " | " + dataMhs[i][3]
-                        + " | " + dataMhs[i][4]);
+                        + " | " + dataMhs[i][4] + " | ");
             }
         }
 
     }
-   
-    public static String analisisJenis(){
+
+    public static void analisisPrestasi() {
         if (jmlData == 0) {
-            System.out.println("Belum ada data yang di input. ");
-        }
-        System.out.print("Masukkan jenis prestasi yang ingin dianalisis : ");
-        String jenis = sc.nextLine();
+            System.out.println("Data Belum Diisi!!");
+        } else {
+            System.out.print("Masukkan Jenis Prestasi yang ingin dianalisis: ");
+            String jenisPrestasi = sc.next();
+            boolean found = false;
 
-        boolean ditemukan = false;
-        System.out.println("\nMenampilkan data yang ingin di analisis" + jenis);
+            System.out.println("=== ANALISIS PRESTASI MAHASISWA ===");
+            System.out.println("Nama | NIM | Jenis | Tingkat | Tahun | ");
 
-        for (int i = 0; i < jmlData; i++) {
-            if (dataMhs[i][2].equalsIgnorecase(jenis)) {
-                System.out.println(dataMhs[i][0] + " | " + dataMhs[i][1] + " | " + dataMhs[i][2] + " | " + dataMhs[i][3] + dataMhs[i][4]);
-                ditemukan = true;
+            for (int i = 0; i < jmlData; i++) {
+                if (dataMhs[i][2].equalsIgnoreCase(jenisPrestasi)) {
+                    System.out.println(dataMhs[i][0] + " | " + dataMhs[i][1] + " | " + dataMhs[i][2] + " | "
+                            + dataMhs[i][3] + " | " + dataMhs[i][4] + " | ");
+                    found = true;
+                } else if (dataMhs[i][0].equalsIgnoreCase(jenisPrestasi)) {
+                    System.out.println(dataMhs[i][0] + " | " + dataMhs[i][1] + " | " + dataMhs[i][2] + " | "
+                            + dataMhs[i][3] + " | " + dataMhs[i][4] + " | ");
+                    found = true;
+                } else if (dataMhs[i][1].equalsIgnoreCase(jenisPrestasi)) {
+                    System.out.println(dataMhs[i][0] + " | " + dataMhs[i][1] + " | " + dataMhs[i][2] + " | "
+                            + dataMhs[i][3] + " | " + dataMhs[i][4] + " | ");
+                    found = true;
+                } else if (dataMhs[i][3].equalsIgnoreCase(jenisPrestasi)) {
+                    System.out.println(dataMhs[i][0] + " | " + dataMhs[i][1] + " | " + dataMhs[i][2] + " | "
+                            + dataMhs[i][3] + " | " + dataMhs[i][4] + " | ");
+                    found = true;
+                } else if (dataMhs[i][4].equalsIgnoreCase(jenisPrestasi)) {
+                    System.out.println(dataMhs[i][0] + " | " + dataMhs[i][1] + " | " + dataMhs[i][2] + " | "
+                            + dataMhs[i][3] + " | " + dataMhs[i][4] + " | ");
+                    found = true;
+                }
             }
-        }
-        if (!ditemukan) {
-            System.out.println("Tidak ada data mahasiswa dan jenis prestasi tersebut.");
+
+            if (!found) {
+                System.out.println("Tidak ada prestasi yang ditemukan untuk jenis: " + jenisPrestasi);
+            }
         }
     }
 }
