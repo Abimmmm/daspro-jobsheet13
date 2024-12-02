@@ -25,7 +25,7 @@ public class Studicase {
             } else if (pilih == 2) {
                 tampilDataPrestasi();
             } else if (pilih == 3) {
-
+                analisisJenis();
             } else if (pilih == 4) {
                 break;
             } else {
@@ -91,15 +91,25 @@ public class Studicase {
         }
 
     }
+   
+    public static String analisisJenis(){
+        if (jmlData == 0) {
+            System.out.println("Belum ada data yang di input. ");
+        }
+        System.out.print("Masukkan jenis prestasi yang ingin dianalisis : ");
+        String jenis = sc.nextLine();
 
-    public static void analisisPrestasi() {
-        System.out.println("Masukkan Jenis Prestasi yang ingin dianalisis : ");
-        int analisis = sc.nextInt();
+        boolean ditemukan = false;
+        System.out.println("\nMenampilkan data yang ingin di analisis" + jenis);
 
-        System.out.println("=== ANALISIS PRESTASI MAHASISWA ===");
-        for (int i = 0; i < dataMhs.length; i++) {
-
+        for (int i = 0; i < jmlData; i++) {
+            if (dataMhs[i][2].equalsIgnorecase(jenis)) {
+                System.out.println(dataMhs[i][0] + " | " + dataMhs[i][1] + " | " + dataMhs[i][2] + " | " + dataMhs[i][3] + dataMhs[i][4]);
+                ditemukan = true;
+            }
+        }
+        if (!ditemukan) {
+            System.out.println("Tidak ada data mahasiswa dan jenis prestasi tersebut.");
         }
     }
-
 }
